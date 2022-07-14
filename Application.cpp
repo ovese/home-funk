@@ -4,14 +4,13 @@ int main(int argc, char* argv[]){
     TaskPanel tp;
     //tp.ItemizeTasks();
 
-//    TaskTwo ttw;
-//    ttw.infotwo();
-//    ttw.car_position();
-//    ttw.compare_selection();
+    MontyGame mg;
+    mg.playMonty();
+
+    std::cout<<std::endl;
 
     WarAndPeace wnp;
     wnp.readTextFile("book-war-and-peace.txt");
-
 
     return 0;
 }

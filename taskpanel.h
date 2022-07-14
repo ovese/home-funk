@@ -28,7 +28,7 @@ class TaskPanel
 };
 
 
-class TaskTwo{
+class MontyGame{
 
 private:
     size_t firstPlayerDoor, secondPlayerDoor, montyDoor, carPos, ttmp;
@@ -37,14 +37,14 @@ private:
 protected:
 
 public:
-    TaskTwo(){std::cout<<"Welcome to task two...Monty Hall problem"<<std::endl;
+    MontyGame(){std::cout<<"Welcome to task two...Monty Hall problem"<<std::endl;
     firstPlayerDoor=0;
     secondPlayerDoor=0;
     montyDoor=0;
     carPos=0;
     chgResponse="no";
     }
-    ~TaskTwo(){std::cout<<"Bye from task two"<<std::endl;}
+    ~MontyGame(){std::cout<<"Bye from task two"<<std::endl;}
     void infotwo(){std::cout<<"The Monty hall problem is a game show quiz in which..."<<std::endl;}
 
     unsigned int car_position(){
@@ -143,6 +143,12 @@ public:
         }
     }
 
+    void playMonty(){
+        infotwo();
+        car_position();
+        compare_selection();
+    }
+
 };
 
 class WarAndPeace{
@@ -179,23 +185,40 @@ public:
         unsigned int count2=0;
         unsigned int count3=0;
 
+        unsigned int lpos1=0;
+        unsigned int lpos2=0;
+        unsigned int lpos3=0;
+
         size_t sz_lines=lines.size();
+        std::cout<<"debug.. number of lines: "<<sz_lines<<std::endl;
         for(size_t ii=0;ii!=sz_lines;++ii){
             //std::cout<<ii<<":"<<lines.at(ii)<<std::endl;
-            std::cout<<ii<<":"<<lines[ii]<<std::endl;
+            //std::cout<<ii<<":"<<lines[ii]<<std::endl;
             if(lines[ii].find(name1)){
+                lpos1=ii;
                 count1=count1+1;
             }
+            else{
+                count1=0;
+            }
             if(lines[ii].find(name2)){
+                lpos2=ii;
                 count2=count2+1;
             }
-            if(lines[ii].find(name3)){
+            else{
+                count2=0;
+            }
+            if(lines[ii].compare(name3)){
+                lpos3=ii;
                 count3=count3+1;
             }
+            else{
+                count3=0;
+            }
         }
-        std::cout<<name1 <<" occured: "<< count1<< " times"<<std::endl;
-        std::cout<<name2 <<" occured: "<< count2<< " times"<<std::endl;
-        std::cout<<name3 <<" occured: "<< count3<< " times"<<std::endl;
+        std::cout<<name1 <<" occured: "<<lpos1<<":"<< count1<< " times"<<std::endl;
+        std::cout<<name2 <<" occured: "<<lpos2<<":"<< count2<< " times"<<std::endl;
+        std::cout<<name3 <<" occured: "<<lpos3<<":"<< count3<< " times"<<std::endl;
         file_to_read.close();
 
 
