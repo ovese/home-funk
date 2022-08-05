@@ -1,0 +1,7 @@
+C++ 6
+John Wayne 3 90 85 100
+Frank Kessie 0
+Indrajit Prasad 2 100 97
+Ese Ovie 3 34 67 87
+Rahman Yusuf 2 85 23
+Mary Poppins 1 66

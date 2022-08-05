@@ -8,6 +8,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <regex>
 
 //#include <random>
 
@@ -194,6 +195,9 @@ public:
         for(size_t ii=0;ii!=sz_lines;++ii){
             //std::cout<<ii<<":"<<lines.at(ii)<<std::endl;
             //std::cout<<ii<<":"<<lines[ii]<<std::endl;
+            std::regex pat(name1);
+            std::regex pat2(name2);
+            std::regex pat3(name3);
             if(lines[ii].find(name1)){
                 lpos1=ii;
                 count1=count1+1;
@@ -201,14 +205,14 @@ public:
             else{
                 count1=0;
             }
-            if(lines[ii].find(name2)){
+            if(regex_match(lines[ii],pat2)){
                 lpos2=ii;
                 count2=count2+1;
             }
             else{
                 count2=0;
             }
-            if(lines[ii].compare(name3)){
+            if(lines[ii].find(name3)){
                 lpos3=ii;
                 count3=count3+1;
             }
@@ -225,6 +229,68 @@ public:
         return EXIT_SUCCESS;
     }
 
+};
+
+class TaskFour{
+private:
+
+protected:
+
+public:
+    TaskFour(){
+        std::cout<<"In Task four ctor"<<std::endl;
+        std::cout<<" This loads an input file and then prints the contents using multiarrays"<<std::endl;
+    }
+
+    ~TaskFour(){
+        std::cout<<"Leaving task four!!!"<<std::endl;
+    }
+
+    bool loadFile(std::string filename){
+        bool status=false;
+        std::cout<<"name of input file is: "<<filename<<std::endl;
+        std::ifstream file_to_read(filename);
+        if(!file_to_read.is_open()){
+            std::cerr<<"File cant be opened!!!"<<std::endl;
+            status=false;
+            return EXIT_FAILURE;
+        }
+        else{
+            status=true;
+            //return status;
+        }
+
+        return status;
+    }
+
+    void readFile(){
+        std::string *students_names; // one dimensional array of names
+        std::string **scores; // multidimentsional array
+        std::vector <std::vector<int> > student_scores;
+        std::string line;
+        std::ifstream inFile;
+
+        inFile.open("students.txt");
+        if (!inFile) {
+            std::cout << "Unable to open file";
+            exit(1); // terminate with error
+        }
+
+        unsigned int ii=0;
+        unsigned int line_size=0;
+        unsigned int space=0;
+        std::cout<<"Prints each line and its size..."<<std::endl;
+        while (std::getline(inFile,line)) {
+            line_size=line.size();
+            std::cout<<line<< " :["<<line_size<<","<<space<<"]\n";
+            if(isspace(line[ii])){
+                ++space;
+                std::cout<<"Spaces per line: "<<space<<"\n";
+            }
+        }
+
+        inFile.close();
+    }
 };
 
 #endif // TASKPANEL_H
